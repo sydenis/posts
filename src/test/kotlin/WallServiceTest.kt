@@ -35,7 +35,7 @@ class WallServiceTest {
 
     @Test
     fun update_no_existing() {
-        val updPost = Post(3U,3U,3U,3U,3U,"test-3")
+        val updPost = Post(3U,3U,3U,3U,3U,"updated")
 
         val expected = false
         val actual = WallService.update(updPost)
