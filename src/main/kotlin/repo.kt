@@ -7,14 +7,14 @@ data class Post (
         val created_by: UInt,
         val date: UInt,
         val text: String,
-        val reply_owner_id: UInt = 0U,
-        val reply_post_id: UInt = 0U,
+        val reply_owner_id: UInt?,
+        val reply_post_id: UInt?,
         val friends_only: Boolean = false,
-        val comments: Comments = Comments(),
-        val copyright: Copyright = Copyright(1U,1U, "", ""),
-        val likes: Likes = Likes(),
-        val reposts: Reposts = Reposts(),
-        val views: Views = Views(),
+        val comments: Comments?,
+        val copyright: Copyright?,
+        val likes: Likes? = Likes(),
+        val reposts: Reposts?,
+        val views: Views?,
         val post_type: String = "post",
         val signer_id: UInt = 0U,
         val can_pin: Boolean = true,
@@ -23,8 +23,8 @@ data class Post (
         val is_pinned: Boolean = false,
         val marked_as_ads: Boolean = false,
         val is_favorite: Boolean = false,
-        val donut: Donut = Donut(),
-        val postponed_id: UInt = 0U,
+        val donut: Donut?,
+        val postponed_id: UInt = 0U
         )
 
 data class Comments (
