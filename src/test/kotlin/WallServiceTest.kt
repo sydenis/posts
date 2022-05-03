@@ -8,26 +8,22 @@ class WallServiceTest {
     @Before
     fun setUp() {
         WallService.clear()
+        val post = Post(0U, 1U, 1U, 1U, 1U, "test-1")
 
-        val post = Post(
-            id = 0U, owner_id = 1U, from_id = 1U, created_by = 1U, date = 1U,
-            text ="test-1",
-            reply_owner_id = null, reply_post_id = null,
-            comments = null, copyright = null, likes = null,
-            reposts = null, views = null, donut = null
-        )
+//        val post = Post(
+//            id = 0U, owner_id = 1U, from_id = 1U, created_by = 1U, date = 1U,
+//            text ="test-1",
+//            reply_owner_id = null, reply_post_id = null,
+//            comments = null, copyright = null, likes = null,
+//            reposts = null, views = null, donut = null
+//        )
         WallService.add(post)
     }
 
     @Test
     fun add() {
         val post = WallService.add(
-            Post(
-            id = 0U, owner_id = 2U, from_id = 2U, created_by = 2U, date = 2U,
-            text ="test-2",
-            reply_owner_id = null, reply_post_id = null,
-            comments = null, copyright = null, likes = null,
-            reposts = null, views = null, donut = null)
+            Post(0U, 2U, 2U, 2U, 2U, "test-2")
         )
 
         val expected = 2U
@@ -49,11 +45,7 @@ class WallServiceTest {
     @Test
     fun update_no_existing() {
         val updPost = Post(
-            id = 3U, owner_id = 3U, from_id = 3U, created_by = 3U, date = 3U,
-            text ="test-3",
-            reply_owner_id = null, reply_post_id = null,
-            comments = null, copyright = null, likes = null,
-            reposts = null, views = null, donut = null
+            0U, 3U, 3U, 3U, 3U, "test-3"
         )
 
         val expected = false
