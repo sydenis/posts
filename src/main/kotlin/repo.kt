@@ -25,7 +25,7 @@ data class Post (
         val is_favorite: Boolean = false,
         val donut: Donut? = null,
         val postponed_id: UInt = 0U,
-        var attachements: Array<Attachement>? = null
+        val attachements: Array<Attachement>? = null
         ) {
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
