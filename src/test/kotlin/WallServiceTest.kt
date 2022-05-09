@@ -9,14 +9,6 @@ class WallServiceTest {
     fun setUp() {
         WallService.clear()
         val post = Post(0U, 1U, 1U, 1U, 1U, "test-1")
-
-//        val post = Post(
-//            id = 0U, owner_id = 1U, from_id = 1U, created_by = 1U, date = 1U,
-//            text ="test-1",
-//            reply_owner_id = null, reply_post_id = null,
-//            comments = null, copyright = null, likes = null,
-//            reposts = null, views = null, donut = null
-//        )
         WallService.add(post)
     }
 
@@ -34,7 +26,7 @@ class WallServiceTest {
 
     @Test
     fun update_existing() {
-        val updPost = WallService.get(0).copy(text = "updated")
+        val updPost = WallService.get(0)?.copy(text = "updated")
 
         val expected = true
         val actual = WallService.update(updPost)
@@ -53,4 +45,22 @@ class WallServiceTest {
 
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun createComment_success() {
+        val expected = WallService.get(0).id
+        val comment = Comment(post_id = expected)
+
+        WallService.createComment(comment)
+    }
+
+    @Test (expected = PostNotFoundException::class)
+    fun createComment_fail() {
+        val expected = 999U
+        val comment = Comment(post_id = expected)
+
+        WallService.createComment(comment)
+    }
+
+
 }

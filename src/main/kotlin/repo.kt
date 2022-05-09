@@ -1,5 +1,3 @@
-import java.util.concurrent.atomic.AtomicInteger
-
 data class Post (
         val id: UInt = 0U,
         val owner_id: UInt,
@@ -130,37 +128,3 @@ data class Donut (
         val edit_mode: String = "all",
         val duration: UInt = 0U
         )
-
-object WallService {
-        private var counter: AtomicInteger = AtomicInteger()
-        private var posts = emptyArray<Post>()
-
-        fun add(post: Post): Post {
-                val newPost = post.copy(id = counter.incrementAndGet().toUInt());
-                posts += newPost
-                return newPost
-        }
-
-        fun update(post: Post): Boolean {
-            for ((index, oldPost) in posts.withIndex())
-                if (oldPost.id == post.id) {
-                   val newPost = post.copy(
-                                   from_id = oldPost.from_id,
-                                   date = oldPost.date)
-
-                   posts[index] = newPost
-                   return true
-                }
-
-            return false
-        }
-
-        fun get(index: Int): Post {
-            return posts[index]
-        }
-
-        fun clear() {
-            posts = emptyArray()
-            counter.set(0)
-        }
-}
